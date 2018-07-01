@@ -8,3 +8,7 @@ body {
 button {
   cursor: pointer;
 }
+
+.hover-black:hover {
+  background-color: #000 !important;
+}
