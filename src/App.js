@@ -38,6 +38,7 @@ const initialState = {
     joined: '',
     age: '',
     pet: '',
+    avatar: '',
   }
 }
 
@@ -90,6 +91,7 @@ class App extends Component {
       joined: data.joined,
       age: data.age,
       pet: data.pet,
+      avatar: data.avatar,
     }})
   }
 
@@ -182,8 +184,11 @@ class App extends Component {
         <Particles className='particles'
           params={particlesOptions}
         />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}
+        <Navigation 
+          isSignedIn={isSignedIn} 
+          onRouteChange={this.onRouteChange}
           toggleModal={this.toggleModal} 
+          avatar={user.avatar}
         />
         { isProfileOpen &&
           <Modal>
@@ -207,11 +212,11 @@ class App extends Component {
               onButtonSubmit={this.onButtonSubmit}
             />
             <FaceRecognition boxes={boxes} imageUrl={imageUrl}/>
-          </div>
-          : (
+          </div> :
+          (
             route === 'signin' ?
-              <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-            : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+              <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> :
+              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
           ) 
         }
       </div>

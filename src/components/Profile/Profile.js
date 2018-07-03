@@ -8,6 +8,7 @@ class Profile extends React.Component {
       name: this.props.user.name,
       age: this.props.user.age,
       pet: this.props.user.pet,
+      avatar: this.props.user.avatar,
     }
   }
 
@@ -21,6 +22,9 @@ class Profile extends React.Component {
         break;
       case 'user-pet':
         this.setState({ pet: event.target.value })
+        break;
+      case 'user-avatar':
+        this.setState({ avatar: event.target.value })
         break;
       default:
         return;
@@ -44,13 +48,13 @@ class Profile extends React.Component {
   }
   render() {
     const { toggleModal, user } = this.props;
-    const { name, age, pet } = this.state;
+    const { name, age, pet, avatar } = this.state;
     return (
       <div className="profile-modal">
         <article className="br3 ba shadow-5 b--black-10 mv4 w-100 w-50-m w-25-l mw6 center bg-white">
           <main className="pa4 black-80 w-80">
             <img
-              src="http://tachyons.io/img/logo.jpg"
+              src={user.avatar}
               className="h3 w3 dib"
               alt="avatar"
             />
@@ -85,9 +89,18 @@ class Profile extends React.Component {
               name="user-pet"
               id="pet"
             />
+            <label className="mt2 fw6" htmlFor="user-avatar">Avatar URL:</label>
+            <input
+              onChange={this.onFormChange}
+              className="pa2 ba w-100"
+              placeholder={user.avatar}
+              type="text"
+              name="user-avatar"
+              id="avatar"
+            />
             <div className="mt4" style={{ display: 'flex', justifyContent: 'space-evenly' }}>
               <button
-                onClick={() => this.onProfileUpdate({ name, age, pet })} 
+                onClick={() => this.onProfileUpdate({ name, age, pet, avatar })} 
                 className="b pa2 grow pointer hover-white w-40 bg-light-blue b--black-20"
               >
                 Save
